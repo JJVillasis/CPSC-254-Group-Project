@@ -11,12 +11,11 @@ Steven Rico - ricosteven00@csu.fullerton.edu
 
 Joshua Villasis - JJVillasis@csu.fulerton.edu
 
-## Languages Used:
+## Programming Languages Used:
 
 - Java 
 - CSS 
 - Python
 - SQL
-- VSCode
 
 ## Execution
