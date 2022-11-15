@@ -18,7 +18,5 @@ Joshua Villasis - JJVillasis@csu.fullerton.edu
 - SQL
 
 ## Licences Used:
-- Node.js
-- React.js
 
-## Execution
+## Execution:
