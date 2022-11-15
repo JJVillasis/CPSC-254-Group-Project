@@ -1,9 +1,3 @@
-var searchInput = "";
-
-function saveInput(){
-    let input = document.getElementById('searchbar').value;
-    searchInput = "Test"
-}
-
+var searchInput = window.location.search.replace(/^\?q=/, '');
 let header = document.getElementById("search_Heading");
 header.innerText = "Results \"" + searchInput + "\"";
