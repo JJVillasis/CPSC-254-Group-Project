@@ -2,7 +2,7 @@
 
 ## Description:
 
-This is a project on a source checking website. The user will input the URL of the article or newspaper they would like to source check and the topic/theme of that article.The source checker will confirm that the information from the article/newspaper is reliable and also if it's scholarly. The website will also link to a few databases, such as O'Reilly Library and Pollack Library (IEEE, ACM). The website will use the topic/theme input from before and search these databases for possibly better information sources. The user's article/newspaper will be given one of three ratings: Unreliable, reliable, or scholarly.
+A source finder that will take a search query from the user and runs the query through a search powered by the Elsevier Developer Portal API. The API will make search requests through ScienceDirect and Scopus and returns 25-100 responses from each database. The user is then allowed to scroll through the results to pick which sources to use.
 
 ## Group Members:
 Jeffery Nong - jeffreynong@csu.fullerton.edu
@@ -12,11 +12,14 @@ Steven Rico - ricosteven00@csu.fullerton.edu
 Joshua Villasis - JJVillasis@csu.fullerton.edu
 
 ## Programming Languages Used:
-- Java 
+- Javascript
+- HTML
 - CSS 
 - Python
-- SQL
 
 ## Licences Used:
+- Elsevier Developer Portal API
 
 ## Execution:
+Download from github page.  
+Run `index.html` to begin at the homepage.
