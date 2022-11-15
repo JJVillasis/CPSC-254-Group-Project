@@ -1,4 +1,4 @@
-# CPSC 254 - Group-Project: Information Source Checker
+# CPSC 254 - Group-Project: Information Source Finder
 
 ## Description:
 
