@@ -9,7 +9,7 @@ Jeffery Nong - jeffreynong@csu.fullerton.edu
 
 Steven Rico - ricosteven00@csu.fullerton.edu
 
-Joshua Villasis - JJVillasis@csu.fulerton.edu
+Joshua Villasis - JJVillasis@csu.fullerton.edu
 
 ## Programming Languages Used:
 - Java 
