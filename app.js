@@ -1,16 +1,9 @@
-const menu = document.querySelector('#mobile-menu')
-const menuLinks = document.querySelector('.navbar__menu')
+var searchInput = "";
 
-//Display Mobile Menu
-const mobileMenu = () => {
-    menu.classList.toggle('is-active')
-    menuLinks.classList.toggle('active')
-}
-
-menu.addEventListener('click', mobileMenu);
-
-function searchItem() {
+function saveInput(){
     let input = document.getElementById('searchbar').value;
-    input = input.tolowercase();
-    return input
+    searchInput = "Test"
 }
+
+let header = document.getElementById("search_Heading");
+header.innerText = "Results \"" + searchInput + "\"";
