@@ -4,7 +4,7 @@
 # This file will be the main connection to the IEEE API
 # It will perform a search accross the IEEE database and return a dictionary.
 
-###IEE Liscense###
+###IEE License###
 # https://developer.ieee.org/API_Terms_of_Use2
 
 
