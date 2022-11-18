@@ -1,4 +1,14 @@
-#from xplore.data import xplore
+# CPSC 254l Open Sources
+# Steven Rico
+# Group: Earth, Wind, Fire
+# This file will be the main connection to the IEEE API
+# It will perform a search accross the IEEE database and return a dictionary.
+
+###IEE Liscense###
+# https://developer.ieee.org/API_Terms_of_Use2
+
+
+
 from urllib.parse import quote_plus as url_encode
 import requests
 import json
