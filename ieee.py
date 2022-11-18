@@ -21,7 +21,7 @@ class IEEE:
         self._base_url = u'https://ieeexploreapi.ieee.org/api/v1/search/articles?'
         self.parameters = wildcards
         self.maxRecords = 25
-        self._uri = self._base_url + '&apikey=' + self.apikey + "&max_records=" + str(self.maxRecords) + "&sort_order=asc" + "&sort_field=article_number" + "&abstract=" + url_encode(self.parameters.lower())
+        self._uri = self._base_url + '&apikey=' + self.apikey + "&max_records=" + str(self.maxRecords) + "&abstract=" + url_encode(self.parameters.lower())
         self.articles = []
 
 
