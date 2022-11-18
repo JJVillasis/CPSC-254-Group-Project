@@ -6,11 +6,14 @@
     scroll-behavior: smooth;
 }
 
+/* Navigation Bar Styles */
+
 .navbar {
     background: #131313;
+    background: linear-gradient(to right, #161616, #000000);
     height: 80px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     font-size: 1.2rem;
     position: sticky;
@@ -18,21 +21,22 @@
     z-index: 999;
 }
 
-.navbar__container {
+ .navbar__container {
     display: flex;
     justify-content: space-between;
     height: 80px;
     z-index: 1;
     width: 100%;
     max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 50px;
-}
+    margin: 0 50px;
+    padding: 0;
+} 
 
 #navbar__logo {
     background-color: #ff8177;
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
     background-size: 100%;
+    background-clip: text;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -44,7 +48,7 @@
     font-size: 2rem;
 }
 
-/* Hero Section */
+/* Hero Section Styles */
 .hero {
     background: #000000;
     background: linear-gradient(to right, #161616, #000000);
@@ -65,24 +69,6 @@
 
 .hero__heading {
     font-size: 75px;
-    margin-bottom: 24px;
-    color: #fff;
-}
-
-.service__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 90%;
-    text-align: center;
-    padding: 30px;
-}
-
-.service__heading {
-    font-size: 50px;
     margin-bottom: 24px;
     color: #fff;
 }
@@ -116,6 +102,7 @@
     color: #fff;
 }
 
+/* Searchbar Styles */
 ::placeholder {
     color: #aaa;
 }
@@ -133,6 +120,49 @@
     background: transparent;
     cursor: pointer;
 }
+
+/* Service Section Styles */
+.service__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 90%;
+    text-align: center;
+    padding: 0px;
+}
+
+.service__heading {
+    font-size: 50px;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+/* Table Styles */
+table.dataTable {
+    background-color: #fff;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  table.dataTable td, table.dataTable th {
+    border: 1px solid #000000;
+    padding: 3px 10px;
+  }
+  table.dataTable tbody td {
+    font-size: 13px;
+    color: #000;
+  }
+  table.dataTable thead {
+    background: #000;
+  }
+  table.dataTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
 
 /* Set body background color */
 body {
