@@ -4,33 +4,51 @@
 # This file will be the main connection to the IEEE API
 # It will perform a search accross the IEEE database and return a dictionary.
 
-###IEE License###
-# https://developer.ieee.org/API_Terms_of_Use2
+"""
+    CPSC 254: Open Sources
+    Steven Rico
+    Group: Earth, Wind, Fire
+    This file will be the main connection to the IEEE API
+    It will perform a search accross the IEEE database and return a dictionary.
 
-
+    IEE Xplore API License: https://developer.ieee.org/API_Terms_of_Use2
+"""
 
 from urllib.parse import quote_plus as url_encode
-import requests
 import json
+import requests
 
 class IEEE:
+    """Class runs the IEEE Xplore search query"""
     def __init__(self, wildcards):
         #Primary API key: c965m6f7kxfb4f2s25jn95h4
         #Secondary API Key: j2vkkwchf2h4sde3fjtuk7k5
-        self.apikey = 'c965m6f7kxfb4f2s25jn95h4'
-        self._base_url = u'https://ieeexploreapi.ieee.org/api/v1/search/articles?'
+        self.api_key = 'c965m6f7kxfb4f2s25jn95h4'
+        self._base_url = 'https://ieeexploreapi.ieee.org/api/v1/search/articles?'
         self.parameters = wildcards
-        self.maxRecords = 25
-        self._uri = self._base_url + '&apikey=' + self.apikey + "&max_records=" + str(self.maxRecords) + "&abstract=" + url_encode(self.parameters.lower())
+        self.max_records = 25
+        #URL Parameters
+        max_records_param = "&max_records=" + str(self.max_records)
+        api_key_param = '&apikey=' + self.api_key
+        search_param = "&abstract=" + url_encode(self.parameters.lower())
+        #IEEE SearchURL
+        self._uri = self._base_url + api_key_param + max_records_param + search_param
         self.articles = []
 
 
     def search(self):
-        resultsTable = []
-        resp = requests.get(self._uri)
+        """Function querys a search in IEEE and coverts metadata to a dictionary"""
+        results_table = []
+        resp = requests.get(self._uri, timeout=60)
 
         if resp.status_code == 403:
-            return [{"Authors": "", "Title": "", "Volume": "", "Article Number": "", "Date": "", "DOI": "", "Citations": ""}]
+            return [{"Authors": "",\
+                     "Title": "",\
+                     "Volume": "",\
+                     "Article Number": "",\
+                     "Date": "",\
+                     "DOI": "",\
+                     "Citations": ""}]
 
         results = json.loads(resp.text.encode('utf-8'))
         articles = results['articles']
@@ -54,8 +72,8 @@ class IEEE:
 
             #Get article number
             if 'publication_number' not in article:
-                articleNum = ""
-            else: articleNum = article['publication_number']
+                article_num = ""
+            else: article_num = article['publication_number']
 
             #Date of the article was published
             if 'publication_year' not in article:
@@ -70,6 +88,12 @@ class IEEE:
             #Get number of citations
             citations = article['citing_paper_count']
 
-            resultsTable.append({"Authors": authors, "Title": title, "Volume": volume, "Article Number": articleNum, "Date": date, "DOI": doi, "Citations": citations})
+            results_table.append({   "Authors": authors,\
+                                    "Title": title,\
+                                    "Volume": volume,\
+                                    "Article Number": article_num,\
+                                    "Date": date,\
+                                    "DOI": doi,\
+                                    "Citations": citations})
 
-        return resultsTable
+        return results_table
