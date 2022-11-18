@@ -46,3 +46,6 @@ Go to directory of the project
 Go to URL server is running on (usually `http://127.0.0.1:5000`)  
 
 Look up a term, and get some articles.
+
+### IMPORTANT NOTE
+The API keys provided can only be used to make 200 search queries a day.
