@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Source Finder - Home</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/45aace2a91.js" crossorigin="anonymous"></script>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="navbar__container">
-            <a href="/index.html" id="navbar__logo">Earth, Wind, & Fire</a>
+            <a href="{{ url_for('index') }}" id="navbar__logo">Earth, Wind, & Fire</a>
         </div>
     </nav>
 
@@ -20,13 +20,95 @@
     <div class="hero" id="home">
         <div class="hero__container">
             <h1 class="hero__heading"> Find sources of your Articles</span></h1>
-            <form action="service.html" method = "get" class = "searchbar">
+            <form div class = "searchbar">
                 <input type="text" placeholder="Search.." name = "q">
                 <button type="submit">
-                    <img src="images/search.png">
+                    <img src="{{ url_for('static',filename='images/search.png') }}">
                 </button>
-            </form>
+            </div>
+        </div>
+
+        <div class="service__container">
+            <h1 class="service__heading" id="service__heading" name="result"> Heading </h1>
         </div>
     </div>
+
+    <!-- Article Table -->
+    <table id="excelDataTable" class="dataTable"></table>
+
+    <script> 
+        var inputStr = window.location.search.substring(3);
+        var input = inputStr.split('+');
+        var searchInput = "";
+        for (x=0; x < input.length; x++) {
+            searchInput += input[x] + " "
+        }
+
+        searchInput = searchInput.substring(0,searchInput.length-1);
+
+        let header = document.getElementById("service__heading");
+        if (searchInput.length === 0) {
+            header.innerHTML = "";
+        }
+        else {
+            header.innerHTML = "Results \"" + searchInput + "\"";
+            $.ajax({
+                url:'/GetData',
+                type: 'POST',
+                context: document.body,
+                data: searchInput,
+                success: buildHtmlTable
+            });
+        }
+
+        // Builds the HTML Table out of myList json data from Ivy restful service.
+        function buildHtmlTable() 
+        {
+            fetch("/static/data.json")
+            .then(response => response.json()) 
+            .then(json => myList = json)
+            .then(() => {
+                var columns = addAllColumnHeaders(myList);
+        
+                for (var i = 0 ; i < myList.length ; i++) {
+                    var row$ = $('<tr/>');
+                    for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
+                        var cellValue = myList[i][columns[colIndex]];
+                        if(Array.isArray(cellValue)){
+                            cellValue = cellValue.join(', ')
+                        }
+            
+                        if (cellValue == null) { cellValue = ""; }
+            
+                        row$.append($('<td/>').html(cellValue));
+                    }
+                    $("#excelDataTable").append(row$);
+                }
+            })
+
+        }
+        
+        // Adds a header row to the table and returns the set of columns.
+        // Need to do union of keys from all records as some records may not contain
+        // all records
+        function addAllColumnHeaders(myList)
+        {
+            var columnSet = [];
+            var headerTr$ = $('<tr/>');
+        
+            for (var i = 0 ; i < myList.length ; i++) {
+                var rowHash = myList[i];
+                for (var key in rowHash) {
+                    if ($.inArray(key, columnSet) == -1){
+                        columnSet.push(key);
+                        headerTr$.append($('<th/>').html(key));
+                    }
+                }
+            }
+            $("#excelDataTable").append(headerTr$);
+        
+            return columnSet;
+        }
+    </script>
 </body>
 </html>
