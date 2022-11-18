@@ -1,3 +1,8 @@
+# CPSC 254L Open Sources
+# Jeffrey Nong 
+# Group: Earth, Wind, Fire
+# This file is made to connect the frontend and backend of the project to put everything together
+
 from flask import Flask, render_template, request
 from ieee import IEEE
 import json
